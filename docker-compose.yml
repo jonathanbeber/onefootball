@@ -3,7 +3,7 @@ services:
   database:
     image: mysql:5.6
     volumes:
-      - db-persistence:/var/lib/mysql/data
+      - db-persistence:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD:-defaultdbpassword}
   config-database:
