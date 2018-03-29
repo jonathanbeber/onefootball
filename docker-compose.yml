@@ -47,6 +47,7 @@ services:
       - rabbitmq
       - redis
       - database
+      - web-app
   uchiwa:
     image: uchiwa/uchiwa
     volumes:

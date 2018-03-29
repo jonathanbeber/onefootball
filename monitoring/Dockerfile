@@ -10,6 +10,7 @@ RUN sed -i "s/RABBITMQ_PASSWORD_PLACEHOLDER/${RABBITMQ_PASSWORD}/g" /etc/sensu/c
     sed -i "s/DATABASE_MONITOR_USER_PLACEHOLDER/${DATABASE_MONITOR_USER}/g" /etc/sensu/conf.d/checks-mysql.json && \
     sed -i "s/DATABASE_MONITOR_USER_PASSWORD_PLACEHOLDER/${DATABASE_MONITOR_USER_PASSWORD}/g" /etc/sensu/conf.d/checks-mysql.json
 
-RUN sensu-install -p mysql:2.3.0
+RUN sensu-install -p mysql:2.3.0 && \
+    sensu-install -p network-checks:3.1.1
 
 CMD service sensu-client start; service sensu-server start; service sensu-api start; while nc -n 127.0.0.1 4567; do sleep 10; done

@@ -1,0 +1,11 @@
+{
+    "checks":{
+        "webapp": {
+            "command": "check-ports.rb -h web-app -p 80 -t 5",
+            "subscribers": [
+                "server"
+              ],
+            "interval": 10
+        }
+    }
+}
