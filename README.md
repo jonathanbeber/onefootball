@@ -62,9 +62,9 @@ docker-compose down
 
 The stack use default values for some configurations, you can define it exporting environments variables in your environemnt: `export VARIABLE_NAME=variable_value`.
 
-- APPLICATION_NAME: The name of the application is used to define the database name and the apllication database user. Default value: "devops-challenge"
-- APPLICATION_PASSWORD: Password of the appllication database user. Default value: "defaultapppassword"
-- DATABASE_PASSWORD: MySQL root user password. Default value: "defaultdbpassword"
-- RABBITMQ_PASSWORD: RabbitMQ password used by Sensu server and clients. Default value: "defaultrabbitpassword"
-- DATABASE_MONITOR_USER: Username used by Sensu server to check MySQL status. Default value: "sensu"
-- DATABASE_MONITOR_USER_PASSWORD: Password used by Sensu to check MySQL status. Default value: "defaultmonitordatabasepassword"
+- **APPLICATION_NAME**: The name of the application is used to define the database name and the apllication database user. Default value: "devops-challenge"
+- **APPLICATION_PASSWORD**: Password of the appllication database user. Default value: "defaultapppassword"
+- **DATABASE_PASSWORD**: MySQL root user password. Default value: "defaultdbpassword"
+- **RABBITMQ_PASSWORD**: RabbitMQ password used by Sensu server and clients. Default value: "defaultrabbitpassword"
+- **DATABASE_MONITOR_USER**: Username used by Sensu server to check MySQL status. Default value: "sensu"
+- **DATABASE_MONITOR_USER_PASSWORD**: Password used by Sensu to check MySQL status. Default value: "defaultmonitordatabasepassword"
