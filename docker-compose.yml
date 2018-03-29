@@ -12,6 +12,8 @@ services:
       - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD:-defaultdbpassword}
       - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
+      - DATABASE_MONITOR_USER=${DATABASE_MONITOR_USER:-sensu}
+      - DATABASE_MONITOR_USER_PASSWORD=${DATABASE_MONITOR_USER_PASSWORD:-defaultmonitordatabasepassword}
     links:
       - database
   web-app:
@@ -39,9 +41,12 @@ services:
       context: monitoring/.
       args:
         - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+        - DATABASE_MONITOR_USER=${DATABASE_MONITOR_USER:-sensu}
+        - DATABASE_MONITOR_USER_PASSWORD=${DATABASE_MONITOR_USER_PASSWORD:-defaultmonitordatabasepassword}
     links:
       - rabbitmq
       - redis
+      - database
   uchiwa:
     image: uchiwa/uchiwa
     volumes:
