@@ -1,0 +1,11 @@
+{
+    "checks":{
+        "mysql-alive": {
+            "command": "check-mysql-alive.rb -d mysql -h database -u DATABASE_MONITOR_USER_PLACEHOLDER -p DATABASE_MONITOR_USER_PASSWORD_PLACEHOLDER",
+            "subscribers": [
+                "server"
+              ],
+            "interval": 10
+        }
+    }
+}
