@@ -33,6 +33,7 @@ With `docker` and `docker-compose` installled follow this instructions:
 ```
 ❯ docker-compose build
 ```
+
 [![docker-compose-build](https://asciinema.org/a/wOM1aVTdKbc08KOHN3McD78hW.png)](https://asciinema.org/a/wOM1aVTdKbc08KOHN3McD78hW)
 
 This should take a while for the first time. That is the moment when docker downloads all images necessaries to build stack's containers.
@@ -49,9 +50,21 @@ Now all the containers are up and running, you can access the application at [ht
 Uchiwa dashboard is acessible at [http://localhost:3000](http://localhost:3000).
 
 Use `CTRL+C` to stop the containers. Use `docker-compose up -d` to start the stack as daemon, `docker-compose logs` to see the logs and `docker-compose stop` to stop the stack.
+
 [![docker-compose-up](https://asciinema.org/a/173418.png)](https://asciinema.org/a/173418)
 
 4. Stop and destroy the stack
 ```
 docker-compose down
 ```
+
+## Environment variables
+
+The stack use default values for some configurations, you can define it exporting environments variables in your environemnt: `export VARIABLE_NAME=variable_value`.
+
+- APPLICATION_NAME: The name of the application is used to define the database name and the apllication database user. Default value: "devops-challenge"
+- APPLICATION_PASSWORD: Password of the appllication database user. Default value: "defaultapppassword"
+- DATABASE_PASSWORD: MySQL root user password. Default value: "defaultdbpassword"
+- RABBITMQ_PASSWORD: RabbitMQ password used by Sensu server and clients. Default value: "defaultrabbitpassword"
+- DATABASE_MONITOR_USER: Username used by Sensu server to check MySQL status. Default value: "sensu"
+- DATABASE_MONITOR_USER_PASSWORD: Password used by Sensu to check MySQL status. Default value: "defaultmonitordatabasepassword"
