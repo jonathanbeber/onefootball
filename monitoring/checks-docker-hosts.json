@@ -13,6 +13,20 @@
               "docker-hosts"
             ],
             "interval": 30
+        },
+        "check_memory": {
+            "command": "check-memory-percent.rb -w 75 -c 85",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_swap": {
+            "command": "check-swap-percent.rb -w 50 -c 70",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
         }
     }
 }

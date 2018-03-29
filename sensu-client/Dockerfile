@@ -14,6 +14,7 @@ RUN apt-get -y update && \
     apt-get -y update && \
     apt-get install -y sensu && \
     sensu-install -p load-checks:4.0.2 && \
+    sensu-install -p memory-checks:3.1.3 && \
     sed -i "s/RABBITMQ_PASSWORD_PLACEHOLDER/${RABBITMQ_PASSWORD}/g" /etc/sensu/conf.d/rabbitmq.json
 
 CMD  bash /bin/fix_mounts.sh; service sensu-client start; tail -f /var/log/sensu/sensu-client.log
