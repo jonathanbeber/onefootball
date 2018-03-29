@@ -16,4 +16,4 @@ RUN apt-get -y update && \
     apt-get install -y sensu && \
     sed -i "s/RABBITMQ_PASSWORD_PLACEHOLDER/${RABBITMQ_PASSWORD}/g" /etc/sensu/conf.d/rabbitmq.json
 
-CMD service sensu-client start; service sensu-server start; service sensu-api start; while nc -n 127.0.0.1 4567; do sleep 10; done
+CMD service sensu-server start; service sensu-api start; while nc -n 127.0.0.1 4567; do sleep 10; done
