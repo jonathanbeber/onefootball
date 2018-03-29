@@ -14,5 +14,18 @@ services:
       - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
     links:
       - database
+  web-app:
+    build:
+      context: web-app/.
+      args:
+        - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
+        - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
+    image: web-app
+    ports:
+      - 8000:80
+    links:
+      - database
+    depends_on:
+      - config-database
 volumes:
   db-persistence:
