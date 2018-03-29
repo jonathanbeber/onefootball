@@ -3,7 +3,6 @@
     application_name: "{{ lookup('env','APPLICATION_NAME') }}"
     application_password: "{{ lookup('env','APPLICATION_PASSWORD') }}"
     database_password: "{{ lookup('env','DATABASE_PASSWORD') }}"
-    database_user: "root"
   tasks:
   - name: wait for mysql
     wait_for:
@@ -15,13 +14,14 @@
       name: "{{ application_name }}"
       state: present
       login_host: "database"
-      login_user: "{{ database_user }}"
+      login_user: "root"
       login_password: "{{ database_password }}"
   - name: create application's user
     mysql_user:
       name: "{{ application_name }}"
       password: "{{ application_password }}"
       priv: '{{ application_name }}.*:ALL'
+      host: '%'
       state: present
       login_host: "database"
       login_user: "root"
