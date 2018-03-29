@@ -5,6 +5,12 @@ services:
     volumes:
       - db-persistence:/var/lib/mysql/data
     environment:
-      - MYSQL_ROOT_PASSWORD="${DATABASE_PASSWORD:-defaultdbpassword}"
+      - MYSQL_ROOT_PASSWORD=${DATABASE_PASSWORD:-defaultdbpassword}
+  config-database:
+    build: config-database/.
+    environment:
+      - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD:-defaultdbpassword}
+      - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
 volumes:
   db-persistence:
