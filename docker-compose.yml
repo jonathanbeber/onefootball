@@ -12,5 +12,7 @@ services:
       - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD:-defaultdbpassword}
       - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
+    links:
+      - database
 volumes:
   db-persistence:
