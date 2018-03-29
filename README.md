@@ -49,8 +49,7 @@ Now all the containers are up and running, you can access the application at [ht
 Uchiwa dashboard is acessible at [http://localhost:3000](http://localhost:3000).
 
 Use `CTRL+C` to stop the containers. Use `docker-compose up -d` to start the stack as daemon, `docker-compose logs` to see the logs and `docker-compose stop` to stop the stack.
-
-[![asciicast](https://asciinema.org/a/tU6CM8iRF1jRxvM1DsBMMxma3.png)](https://asciinema.org/a/tU6CM8iRF1jRxvM1DsBMMxma3)
+[![docker-compose-up](https://asciinema.org/a/173418.png)](https://asciinema.org/a/173418)
 
 4. Stop and destroy the stack
 ```
