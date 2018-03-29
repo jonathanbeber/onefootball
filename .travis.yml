@@ -3,10 +3,10 @@ sudo: required
 services:
   - docker
 
-install:
+script:
   - cd base_image_sensu; docker build -t jonathanbeber/sensu:latest .
   
-deploy:
+after_script:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
   - docker push jonathanbeber/sensu:latest
 
