@@ -24,5 +24,13 @@
       priv: '{{ application_name }}.*:ALL'
       state: present
       login_host: "database"
-      login_user: "{{ database_user }}"
+      login_user: "root"
+      login_password: "{{ database_password }}"
+  - name: Import migrate.sql
+    mysql_db:
+      state: import
+      name: "{{ application_name }}"
+      target: /ansible/migrate.sql
+      login_host: "database"
+      login_user: "root"
       login_password: "{{ database_password }}"
