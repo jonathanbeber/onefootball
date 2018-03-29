@@ -12,7 +12,7 @@
             "subscribers": [
               "docker-hosts"
             ],
-            "interval": 30
+            "interval": 10
         },
         "check_memory": {
             "command": "check-memory-percent.rb -w 75 -c 85",
@@ -23,6 +23,20 @@
         },
         "check_swap": {
             "command": "check-swap-percent.rb -w 50 -c 70",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_disk_warn": {
+            "command": "check-disk-usage.rb -w 75",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_disk_critical": {
+            "command": "check-disk-usage.rb -c 90",
             "subscribers": [
               "docker-hosts"
             ],
