@@ -1,5 +1,17 @@
 version: '3'
 services:
+  web-app:
+    build:
+      context: web-app/.
+      args:
+        - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
+        - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
+    ports:
+      - 8000:80
+    links:
+      - database
+    depends_on:
+      - config-database
   database:
     image: mysql:5.6
     volumes:
@@ -16,26 +28,7 @@ services:
       - DATABASE_MONITOR_USER_PASSWORD=${DATABASE_MONITOR_USER_PASSWORD:-defaultmonitordatabasepassword}
     links:
       - database
-  web-app:
-    build:
-      context: web-app/.
-      args:
-        - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
-        - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
-    ports:
-      - 8000:80
-    links:
-      - database
-    depends_on:
-      - config-database
-  rabbitmq:
-    image: rabbitmq:3.7-alpine
-    environment:
-      - RABBITMQ_DEFAULT_USER=sensu
-      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
-      - RABBITMQ_DEFAULT_VHOST=/sensu
-  redis:
-    image: redis:4.0-alpine
+
   sensu-server:
     build:
       context: monitoring/.
@@ -71,5 +64,14 @@ services:
       - "/sys:/host_sys/:ro"
     links:
       - rabbitmq
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=sensu
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+      - RABBITMQ_DEFAULT_VHOST=/sensu
+  redis:
+    image: redis:4.0-alpine
+
 volumes:
   db-persistence:
