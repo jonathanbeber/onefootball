@@ -1,0 +1,15 @@
+sudo: required
+
+services:
+  - docker
+
+install:
+  - cd base_image_sensu; docker build -t jonathanbeber/sensu:latest .
+  
+deploy:
+  - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+  - docker push jonathanbeber/sensu:latest
+
+branches:
+  only:
+  - master

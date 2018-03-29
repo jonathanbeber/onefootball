@@ -1,0 +1,14 @@
+{
+    "client": {
+        "name": "sensu-server",
+        "address": "sensu-server",
+        "environment": "development",
+        "subscriptions": [
+            "server"
+        ],
+        "socket": {
+            "bind": "0.0.0.0",
+            "port": 3030
+        }
+    }
+}

@@ -3,6 +3,8 @@
     application_name: "{{ lookup('env','APPLICATION_NAME') }}"
     application_password: "{{ lookup('env','APPLICATION_PASSWORD') }}"
     database_password: "{{ lookup('env','DATABASE_PASSWORD') }}"
+    monitor_user: "{{ lookup('env','DATABASE_MONITOR_USER') }}"
+    monitor_user_password: "{{ lookup('env','DATABASE_MONITOR_USER_PASSWORD') }}"
   tasks:
   - name: wait for mysql
     wait_for:
@@ -31,6 +33,16 @@
       state: import
       name: "{{ application_name }}"
       target: /ansible/migrate.sql
+      login_host: "database"
+      login_user: "root"
+      login_password: "{{ database_password }}"
+  - name: create sensu's user
+    mysql_user:
+      name: "{{ monitor_user }}"
+      password: "{{ monitor_user_password }}"
+      priv: '*.*:SELECT,SHOW VIEW,PROCESS,REPLICATION CLIENT'
+      host: '%'
+      state: present
       login_host: "database"
       login_user: "root"
       login_password: "{{ database_password }}"

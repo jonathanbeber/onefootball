@@ -1,0 +1,46 @@
+{
+    "checks":{
+        "check_load_warn": {
+            "command": "check-load.rb -w  0.5,0.5,0.25",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_load_critical": {
+            "command": "check-load.rb -c  1,0.5,0.25",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_memory": {
+            "command": "check-memory-percent.rb -w 75 -c 85",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_swap": {
+            "command": "check-swap-percent.rb -w 50 -c 70",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_disk_warn": {
+            "command": "check-disk-usage.rb -w 75",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_disk_critical": {
+            "command": "check-disk-usage.rb -c 90",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        }
+    }
+}

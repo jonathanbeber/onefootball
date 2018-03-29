@@ -12,6 +12,8 @@ services:
       - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
       - DATABASE_PASSWORD=${DATABASE_PASSWORD:-defaultdbpassword}
       - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
+      - DATABASE_MONITOR_USER=${DATABASE_MONITOR_USER:-sensu}
+      - DATABASE_MONITOR_USER_PASSWORD=${DATABASE_MONITOR_USER_PASSWORD:-defaultmonitordatabasepassword}
     links:
       - database
   web-app:
@@ -20,12 +22,54 @@ services:
       args:
         - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
         - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
-    image: web-app
     ports:
       - 8000:80
     links:
       - database
     depends_on:
       - config-database
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=sensu
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+      - RABBITMQ_DEFAULT_VHOST=/sensu
+  redis:
+    image: redis:4.0-alpine
+  sensu-server:
+    build:
+      context: monitoring/.
+      args:
+        - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+        - DATABASE_MONITOR_USER=${DATABASE_MONITOR_USER:-sensu}
+        - DATABASE_MONITOR_USER_PASSWORD=${DATABASE_MONITOR_USER_PASSWORD:-defaultmonitordatabasepassword}
+    links:
+      - rabbitmq
+      - redis
+      - database
+      - web-app
+  uchiwa:
+    image: uchiwa/uchiwa
+    volumes:
+      - "./monitoring/uchiwa-config:/config"
+    ports:
+      - 3000:3000
+    links:
+      - sensu-server
+  sensu-client:
+    build:
+      context: sensu-client/.
+      args:
+        - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+    environment:
+      - HOST_DEV_DIR=/host_dev
+      - HOST_PROC_DIR=/host_proc
+      - HOST_SYS_DIR=/host_sys
+    volumes:
+      - "/dev:/host_dev/:ro"
+      - "/proc:/host_proc/:ro"
+      - "/sys:/host_sys/:ro"
+    links:
+      - rabbitmq
 volumes:
   db-persistence:
