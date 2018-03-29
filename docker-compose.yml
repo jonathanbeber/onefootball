@@ -20,7 +20,6 @@ services:
       args:
         - APPLICATION_NAME=${APPLICATION_NAME:-devops-challenge}
         - APPLICATION_PASSWORD=${APPLICATION_PASSWORD:-defaultapppassword}
-    image: web-app
     ports:
       - 8000:80
     links:
