@@ -42,5 +42,13 @@ services:
     links:
       - rabbitmq
       - redis
+  uchiwa:
+    image: uchiwa/uchiwa
+    volumes:
+      - "./monitoring/uchiwa-config:/config"
+    ports:
+      - 3000:3000
+    links:
+      - sensu-server
 volumes:
   db-persistence:
