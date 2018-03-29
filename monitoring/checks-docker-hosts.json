@@ -1,0 +1,18 @@
+{
+    "checks":{
+        "check_load_warn": {
+            "command": "check-load.rb -w  0.5,0.5,0.25",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 10
+        },
+        "check_load_critical": {
+            "command": "check-load.rb -c  1,0.5,0.25",
+            "subscribers": [
+              "docker-hosts"
+            ],
+            "interval": 30
+        }
+    }
+}
