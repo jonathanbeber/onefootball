@@ -27,5 +27,21 @@ services:
       - database
     depends_on:
       - config-database
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+    environment:
+      - RABBITMQ_DEFAULT_USER=sensu
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+      - RABBITMQ_DEFAULT_VHOST=/sensu
+  redis:
+    image: redis:4.0-alpine
+  sensu-server:
+    build:
+      context: monitoring/.
+      args:
+        - RABBITMQ_PASSWORD=${RABBITMQ_PASSWORD:-defaultrabbitpassword}
+    links:
+      - rabbitmq
+      - redis
 volumes:
   db-persistence:
