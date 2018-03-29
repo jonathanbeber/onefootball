@@ -7,6 +7,7 @@ COPY redis.json /etc/sensu/conf.d/redis.json
 COPY client.json /etc/sensu/conf.d/client.json
 COPY rabbitmq.json /etc/sensu/conf.d/rabbitmq.json
 COPY transport.json /etc/sensu/conf.d/transport.json
+COPY checks-docker-hosts.json /etc/sensu/conf.d/checks-docker-hosts.json
 
 RUN apt-get -y update && \
     apt-get -y install wget apt-transport-https && \
