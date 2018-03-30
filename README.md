@@ -49,6 +49,10 @@ Use `CTRL+C` to stop the containers. Use `docker-compose up -d` to start the sta
 
 [![docker-compose-up](https://asciinema.org/a/173418.png)](https://asciinema.org/a/173418)
 
+GoWebApp doesn't comes with default users, you can create your user at [http://localhost:8000/register](http://localhost:8000/register):
+
+![register](https://user-images.githubusercontent.com/8309341/38119065-684e1342-3395-11e8-8f51-36de77f5b60b.jpg)
+
 4. Stop and destroy the stack
 ```
 docker-compose down
