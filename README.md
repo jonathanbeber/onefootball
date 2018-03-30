@@ -60,7 +60,7 @@ docker-compose down
 
 ## Environment variables
 
-The stack use default values for some configurations, you can define it exporting environments variables in your environemnt: `export VARIABLE_NAME=variable_value`.
+The stack use default values for some configurations, you can define it exporting environments variables in your environment: `export VARIABLE_NAME=variable_value`.
 
 - **APPLICATION_NAME**: the name of the application is used to define the database name and the apllication database user. Default value: "devops-challenge"
 - **APPLICATION_PASSWORD**: password of the appllication database user. Default value: "defaultapppassword"
