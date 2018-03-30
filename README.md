@@ -43,11 +43,7 @@ This should take a while for the first time. That is the moment when docker down
 ❯ docker-compose up
 ```
 
-The log of all applications will be displayed.
-
-Now all the containers are up and running, you can access the application at [http://localhost:8000](http://localhost:8000/).
-
-Uchiwa dashboard is acessible at [http://localhost:3000](http://localhost:3000).
+The log of all applications will be displayed. Now all the containers are up and running, you can access the application at [http://localhost:8000](http://localhost:8000/). Uchiwa dashboard is acessible at [http://localhost:3000](http://localhost:3000).
 
 Use `CTRL+C` to stop the containers. Use `docker-compose up -d` to start the stack as daemon, `docker-compose logs` to see the logs and `docker-compose stop` to stop the stack.
 
