@@ -21,7 +21,7 @@ To run this stack you need to have `docker` and `docker-compose` commands instal
  - [Docker](https://docs.docker.com/install/)
  - [Docker Compose](https://docs.docker.com/compose/install/)
 
-With `docker` and `docker-compose` installled follow this instructions:
+With `docker` and `docker-compose` installled, follow this instructions:
 
 1. Clone this repository, or download it as `ZIP` file to your machine:
 ```
