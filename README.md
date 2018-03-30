@@ -34,7 +34,7 @@ With `docker` and `docker-compose` installled follow this instructions:
 ❯ docker-compose build
 ```
 
-[![docker-compose-build](https://asciinema.org/a/wOM1aVTdKbc08KOHN3McD78hW.png)](https://asciinema.org/a/wOM1aVTdKbc08KOHN3McD78hW)
+[![docker-compose-build](https://asciinema.org/a/173407.png)](https://asciinema.org/a/173407)
 
 This should take a while for the first time. That is the moment when docker downloads all images necessaries to build stack's containers.
 
